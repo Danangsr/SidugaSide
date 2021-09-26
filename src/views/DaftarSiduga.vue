@@ -54,7 +54,8 @@
                   </b-form>
 
                   <b-alert :show="alert" variant="success"
-                    >Berhasil mendaftar akun, mohon tunggu 3 detik untuk pindah halaman otomatis</b-alert
+                    >Berhasil mendaftar akun, mohon tunggu 3 detik untuk pindah
+                    halaman otomatis</b-alert
                   >
                   <b-alert :show="alert2" variant="danger">{{ pesan }}</b-alert>
                 </b-col>
@@ -92,23 +93,21 @@ export default {
       let vm = this;
       vm.show = true;
 
-      let send = await Axios.post(ip_server + "user/register", {
+      let send = await Axios.post(ip_server + "pasien/register", {
         nama: vm.nama,
         password: vm.password,
         username: vm.username,
       });
 
-      console.log(send);
-
-      if (send.data.id) {
+      if (send.data.message == "sukses") {
         vm.show = false;
         vm.alert = true;
 
         setTimeout(() => {
           vm.alert = false;
-          vm.$router.push("/dashboardSiduga");
+          vm.$router.push("/loginSiduga");
         }, 3000);
-      } else if (send.data.message) {
+      } else if (send.data.message != "sukses") {
         vm.show = false;
         vm.alert2 = true;
         vm.pesan = send.data.message;

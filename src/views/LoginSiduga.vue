@@ -96,7 +96,7 @@ export default {
       let vm = this;
       vm.show = true;
 
-      let send = await Axios.post(ip_server + "user/login", {
+      let send = await Axios.post(ip_server + "pasien/login", {
         username: vm.username,
         password: vm.password,
       });
@@ -104,6 +104,8 @@ export default {
       if (send.data.token) {
         vm.show = false;
         vm.$router.push("/dashboardSiduga");
+        localStorage.setItem("idUser", send.data.id);
+        localStorage.setItem("token", send.data.token);
       } else if (send.data.message) {
         vm.show = false;
         vm.pesan = send.data.message;

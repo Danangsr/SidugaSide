@@ -243,10 +243,13 @@ router.beforeEach((to, from, next) => {
   } else if (to.matched.some(record => record.meta.siduga)) {
     // console.log(localStorage.getItem('token'))
     if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
-      next()
+      next({
+        path: '/loginSiduga',
+        query: { tujuan: to.fullPath }
+      })
     }
     else {
-      next({ name: 'dashboard' })
+      next()
     }
   } else {
     next()
