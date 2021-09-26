@@ -51,20 +51,20 @@ const routes = [
     path: "/daftar",
     name: "daftar",
     component: Daftar,
-  
+
   },
   {
     path: "/screeningfront/:idPasien",
     name: "ScreeningPasienFront",
     component: ScreeningPasienFront,
-  
+
   },
   {
     path: '/dashboard',
     name: 'dashboard',
     component: dashboard,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
 
@@ -73,7 +73,7 @@ const routes = [
     name: 'riwayatpenyakit',
     component: RiwayatPenyakit,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
   {
@@ -81,7 +81,7 @@ const routes = [
     name: 'gejalafisik',
     component: GejalaFisik,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
   {
@@ -89,7 +89,7 @@ const routes = [
     name: 'gejalapsikis',
     component: GejalaPsikis,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
   {
@@ -97,7 +97,7 @@ const routes = [
     name: 'gejalaPerilakuBuruk',
     component: GejalaPerilakuBuruk,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
   {
@@ -105,7 +105,7 @@ const routes = [
     name: 'masterpernyataan',
     component: MasterPernyataan,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
 
@@ -114,7 +114,7 @@ const routes = [
     name: 'screening',
     component: screening,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
 
@@ -123,18 +123,18 @@ const routes = [
     name: 'ScreeningPasien',
     component: ScreeningPasien,
     meta: {
-        requiresAuth: true
+      requiresAuth: true
     }
   },
-// {
-//     path: '/admin',
-//     name: 'admin',
-//     component: Admin,
-//     meta: {
-//         requiresAuth: true,
-//         is_admin : true
-//     }
-// },
+  // {
+  //     path: '/admin',
+  //     name: 'admin',
+  //     component: Admin,
+  //     meta: {
+  //         requiresAuth: true,
+  //         is_admin : true
+  //     }
+  // },
   {
     path: "/about",
     name: "About",
@@ -206,11 +206,11 @@ const routes = [
       guest: true
     }
   },
-  
+
   // END SIDUGA
 
 
-  
+
 ];
 
 const router = new VueRouter({
@@ -220,36 +220,36 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-      if (!localStorage.getItem('token') || localStorage.getItem('token')  == "undefined" || localStorage.getItem('token') == '' ) {
-          next({
-              path: '/login',
-              query: { tujuan: to.fullPath }
-          })
-      } else {
-          // let user = JSON.parse(localStorage.getItem('user'))
-          // if(to.matched.some(record => record.meta.is_admin)) {
-          //     if(user.is_admin == 1){
-          //         next()
-          //     }
-          //     else{
-          //         next({ name: 'userboard'})
-          //     }
-          // }else {
-          //     next()
-          // }
-          next()
-      }
-  } else if(to.matched.some(record => record.meta.guest)) {
-    // console.log(localStorage.getItem('token'))
-      if(!localStorage.getItem('token') || localStorage.getItem('token')  == "undefined" || localStorage.getItem('token') == '' ){
-          next()
-      }
-      else{
-          next({ name: 'dashboard'})
-      }
-  }else {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
+      next({
+        path: '/login',
+        query: { tujuan: to.fullPath }
+      })
+    } else {
+      // let user = JSON.parse(localStorage.getItem('user'))
+      // if(to.matched.some(record => record.meta.is_admin)) {
+      //     if(user.is_admin == 1){
+      //         next()
+      //     }
+      //     else{
+      //         next({ name: 'userboard'})
+      //     }
+      // }else {
+      //     next()
+      // }
       next()
+    }
+  } else if (to.matched.some(record => record.meta.guest)) {
+    // console.log(localStorage.getItem('token'))
+    if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
+      next()
+    }
+    else {
+      next({ name: 'dashboard' })
+    }
+  } else {
+    next()
   }
 })
 

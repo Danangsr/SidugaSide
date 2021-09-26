@@ -28,6 +28,7 @@
                 <b-form-group>
                   <b-form-input
                     required
+                    v-model="username"
                     placeholder="Masukkan Username"
                     size="lg"
                   ></b-form-input>
@@ -36,6 +37,7 @@
                 <b-form-group>
                   <b-form-input
                     type="password"
+                    v-model="password"
                     required
                     placeholder="Masukkan Password"
                     size="lg"
@@ -59,12 +61,15 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+// import axios from "axios";
 
 export default {
   name: "LoginSiduga",
   data() {
     return {
       isLogin: false,
+      username: "",
+      password: "",
     };
   },
 };
