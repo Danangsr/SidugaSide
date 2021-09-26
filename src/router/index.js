@@ -223,7 +223,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
       next({
-        path: '/login',
+        path: '/loginSiduga',
         query: { tujuan: to.fullPath }
       })
     } else {
@@ -241,7 +241,6 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else if (to.matched.some(record => record.meta.siduga)) {
-    // console.log(localStorage.getItem('token'))
     if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
       next({
         path: '/loginSiduga',

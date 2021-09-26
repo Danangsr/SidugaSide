@@ -75,7 +75,7 @@ export default {
 
     logoutdong: function () {
       this.doLogout();
-      this.$router.push({ name: "/" });
+      this.$router.push("/");
       // this.isLogin =  this.cekLogin
     },
   },

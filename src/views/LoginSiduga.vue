@@ -103,9 +103,9 @@ export default {
 
       if (send.data.token) {
         vm.show = false;
-        vm.$router.push("/dashboardSiduga");
         localStorage.setItem("idUser", send.data.id);
         localStorage.setItem("token", send.data.token);
+        vm.$router.push("/dashboardSiduga");
       } else if (send.data.message) {
         vm.show = false;
         vm.pesan = send.data.message;
