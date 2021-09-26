@@ -150,7 +150,7 @@ const routes = [
     name: "HomeSiduga",
     component: HomeSiduga,
     meta: {
-      guest: true
+      siduga: false
     }
   },
   {
@@ -158,7 +158,7 @@ const routes = [
     name: "LoginSiduga",
     component: LoginSiduga,
     meta: {
-      guest: true
+      siduga: false,
     }
   },
 
@@ -167,7 +167,7 @@ const routes = [
     name: "DaftarSiduga",
     component: DaftarSiduga,
     meta: {
-      guest: true
+      siduga: false,
     }
   },
 
@@ -176,7 +176,7 @@ const routes = [
     name: "DashboardSiduga",
     component: DashboardSiduga,
     meta: {
-      guest: true
+      siduga: true,
     }
   },
 
@@ -185,7 +185,7 @@ const routes = [
     name: "BiodataSiduga",
     component: BiodataSiduga,
     meta: {
-      guest: true
+      siduga: true
     }
   },
 
@@ -194,7 +194,7 @@ const routes = [
     name: "DukunganKelSiduga",
     component: DukunganKelSiduga,
     meta: {
-      guest: true
+      siduga: true
     }
   },
 
@@ -203,7 +203,7 @@ const routes = [
     name: "ScreeningSiduga",
     component: ScreeningSiduga,
     meta: {
-      guest: true
+      siduga: true
     }
   },
 
@@ -240,7 +240,7 @@ router.beforeEach((to, from, next) => {
       // }
       next()
     }
-  } else if (to.matched.some(record => record.meta.guest)) {
+  } else if (to.matched.some(record => record.meta.siduga)) {
     // console.log(localStorage.getItem('token'))
     if (!localStorage.getItem('token') || localStorage.getItem('token') == "undefined" || localStorage.getItem('token') == '') {
       next()

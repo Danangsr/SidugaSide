@@ -54,8 +54,7 @@
                   </b-form>
 
                   <b-alert :show="alert" variant="success"
-                    >Berhasil mendaftar akun, mohon tunggu 3 detik untuk
-                    otomatis melanjutkan ke halaman login</b-alert
+                    >Berhasil mendaftar akun, mohon tunggu 3 detik untuk pindah halaman otomatis</b-alert
                   >
                   <b-alert :show="alert2" variant="danger">{{ pesan }}</b-alert>
                 </b-col>
