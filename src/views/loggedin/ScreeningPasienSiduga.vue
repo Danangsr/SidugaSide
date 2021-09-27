@@ -394,6 +394,13 @@
                   <h4 class="alert-heading">
                     Skor Kuisioner Regulasi Emosi :
                     {{ nilaiPernyataan }}
+                    <span v-if="nilaiPertanyaan < 40">Dukungan kurang</span>
+                    <span v-else-if="nilaiPertanyaan >= 40 || nilaiPernyataan <= 60"
+                      >Dukungan cukup</span
+                    >
+                    <span v-else-if="nilaiPertanyaan > 60"
+                      >Dukungan cukup</span
+                    >
                   </h4>
                 </b-alert>
 
