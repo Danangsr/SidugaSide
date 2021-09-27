@@ -17,6 +17,7 @@ import GejalaPerilakuBuruk from "../views/loggedin/GejalaPerilakuBuruk.vue";
 import MasterPernyataan from "../views/loggedin/MasterPernyataan";
 import screening from "../views/loggedin/screening";
 import ScreeningPasien from "../views/loggedin/ScreeningPasien";
+import ScreeningPasienSiduga from "../views/loggedin/ScreeningPasienSiduga";
 import dashboard from "../views/loggedin/dashboard.vue";
 import Daftar from "../views/loggedin/Daftar.vue";
 import ScreeningPasienFront from "../views/loggedin/ScreeningPasienFront";
@@ -122,6 +123,15 @@ const routes = [
     path: '/screeningpasien/:idPasien',
     name: 'ScreeningPasien',
     component: ScreeningPasien,
+    meta: {
+      requiresAuth: true
+    }
+  },
+
+  {
+    path: '/screeningpasiensiduga/:idPasien',
+    name: 'ScreeningPasienSiduga',
+    component: ScreeningPasienSiduga,
     meta: {
       requiresAuth: true
     }

@@ -1,1 +1,1 @@
-export const ip_server = 'http://localhost:3000/'
+export const ip_server = 'http://sideku.org:8801/'
