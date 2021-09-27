@@ -21,10 +21,10 @@
                         <h5>Nama</h5>
                       </div>
                       <div style="display: table-cell; width: 5%">
-                        <h5>:</h5>
+                        <h5>: {{ data.nama }}</h5>
                       </div>
                       <div style="display: table-cell">
-                        <h5>{{ pasien.nama }}</h5>
+                        <!-- <h5>{{ pasien.nama }}</h5> -->
                       </div>
                     </div>
 
@@ -33,10 +33,10 @@
                         <h5>Alamat</h5>
                       </div>
                       <div style="display: table-cell; width: 5%">
-                        <h5>:</h5>
+                        <h5>: {{ data.alamat }}</h5>
                       </div>
                       <div style="display: table-cell">
-                        <h5>{{ pasien.alamat }}</h5>
+                        <!-- <h5>{{ pasien.alamat }}</h5> -->
                       </div>
                     </div>
                   </div>
@@ -98,6 +98,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal1"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -108,6 +109,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal2"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -118,6 +120,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal3"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -128,6 +131,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal4"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -138,6 +142,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal5"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
                           </b-col>
@@ -171,6 +176,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal6"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -181,6 +187,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal7"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -191,6 +198,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal8"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -201,6 +209,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal9"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -211,6 +220,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal10"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
                           </b-col>
@@ -244,6 +254,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal11"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -254,6 +265,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal12"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -264,6 +276,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal13"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -274,6 +287,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal14"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -284,6 +298,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal15"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
                           </b-col>
@@ -317,6 +332,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal16"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -327,6 +343,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal17"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -337,6 +354,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal18"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -347,6 +365,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal19"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
 
@@ -357,6 +376,7 @@
                                 :options="options"
                                 size="lg"
                                 v-model="soal20"
+                                disabled
                               ></b-form-select>
                             </b-form-group>
                           </b-col>
@@ -377,12 +397,7 @@
                   </h4>
                 </b-alert>
 
-                <b-button
-                  variant="primary"
-                  class="m-t-15"
-                  v-on:click="submitData"
-                  >Simpan
-                </b-button>
+                <!-- <b-button variant="primary" class="m-t-15">Simpan </b-button> -->
               </b-col>
             </b-row>
           </div>
@@ -392,6 +407,8 @@
   </div>
 </template>
 <script>
+import Axios from "axios";
+import { ip_server } from "@/ip_server";
 import myheader from "../../components/header";
 
 // import axios from "axios";
@@ -401,7 +418,116 @@ export default {
     myheader,
   },
 
-  data() {},
+  data() {
+    return {
+      data: {},
+      nilaiPernyataan: 0,
+      options: [
+        { value: 4, text: "Selalu" },
+        { value: 3, text: "Sering" },
+        { value: 2, text: "Kadang-Kadang" },
+        { value: 1, text: "Tidak Pernah" },
+      ],
+      soal1: 0,
+      soal2: 0,
+      soal3: 0,
+      soal4: 0,
+      soal5: 0,
+      soal6: 0,
+      soal7: 0,
+      soal8: 0,
+      soal9: 0,
+      soal10: 0,
+      soal11: 0,
+      soal12: 0,
+      soal13: 0,
+      soal14: 0,
+      soal15: 0,
+      soal16: 0,
+      soal17: 0,
+      soal18: 0,
+      soal19: 0,
+      soal20: 0,
+    };
+  },
+
+  mounted() {
+    this.getData();
+  },
+
+  methods: {
+    async getData() {
+      let vm = this;
+
+      let profil = await Axios.get(
+        ip_server + "pasien/" + vm.$route.params.idPasien,
+        {
+          headers: {
+            accesstoken: localStorage.getItem("token"),
+          },
+        }
+      );
+      vm.data = profil.data.respon[0];
+      console.log(vm.data);
+
+      let fetch = await Axios.get(
+        ip_server + "poolODGJ/listByPasienId/" + vm.$route.params.idPasien,
+        {
+          headers: {
+            accesstoken: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      let nilai = [
+        fetch.data.data[0].soal1,
+        fetch.data.data[0].soal2,
+        fetch.data.data[0].soal3,
+        fetch.data.data[0].soal4,
+        fetch.data.data[0].soal5,
+        fetch.data.data[0].soal6,
+        fetch.data.data[0].soal7,
+        fetch.data.data[0].soal8,
+        fetch.data.data[0].soal9,
+        fetch.data.data[0].soal10,
+        fetch.data.data[0].soal11,
+        fetch.data.data[0].soal12,
+        fetch.data.data[0].soal13,
+        fetch.data.data[0].soal14,
+        fetch.data.data[0].soal15,
+        fetch.data.data[0].soal16,
+        fetch.data.data[0].soal17,
+        fetch.data.data[0].soal18,
+        fetch.data.data[0].soal19,
+        fetch.data.data[0].soal20,
+      ];
+
+      nilai.forEach((el) => {
+        vm.nilaiPernyataan += el;
+      });
+
+      vm.soal1 = fetch.data.data[0].soal1;
+      vm.soal2 = fetch.data.data[0].soal2;
+      vm.soal3 = fetch.data.data[0].soal3;
+      vm.soal4 = fetch.data.data[0].soal4;
+      vm.soal5 = fetch.data.data[0].soal5;
+      vm.soal6 = fetch.data.data[0].soal6;
+      vm.soal7 = fetch.data.data[0].soal7;
+      vm.soal8 = fetch.data.data[0].soal8;
+      vm.soal9 = fetch.data.data[0].soal9;
+      vm.soal10 = fetch.data.data[0].soal10;
+      vm.soal11 = fetch.data.data[0].soal11;
+      vm.soal12 = fetch.data.data[0].soal12;
+      vm.soal13 = fetch.data.data[0].soal13;
+      vm.soal14 = fetch.data.data[0].soal14;
+      vm.soal15 = fetch.data.data[0].soal15;
+      vm.soal16 = fetch.data.data[0].soal16;
+      vm.soal17 = fetch.data.data[0].soal17;
+      vm.soal18 = fetch.data.data[0].soal18;
+      vm.soal19 = fetch.data.data[0].soal19;
+      vm.soal20 = fetch.data.data[0].soal20;
+    },
+  },
 };
 </script>
 <style scoped>
