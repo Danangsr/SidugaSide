@@ -1,1 +1,1 @@
-export const ip_server = 'https://backend.sideku.org'
+export const ip_server = 'https://backend.sideku.org/'
