@@ -52,8 +52,9 @@
 
                 <b-col xs="12" sm="12" md="12" lg="12" class="mt-4">
                   <div class="box-menus">
-                    <router-link
-                      :to="''"
+                    <a
+                      href="http://msi.radenmasamino.org/"
+                      target="_blank"
                       style="color: #0089e7; text-decoration: none"
                     >
                       <center>
@@ -64,16 +65,13 @@
                         <h4 class="m-t-15 m-b-0"><strong>MOTIVASI</strong></h4>
                         <h6 class="m-t-0 m-b-0"><strong>SPIRITUAL</strong></h6>
                       </center>
-                    </router-link>
+                    </a>
                   </div>
                 </b-col>
 
                 <b-col xs="12" sm="12" md="12" lg="12" class="mt-4">
                   <div class="box-menus">
-                    <router-link
-                      :to="''"
-                      style="color: #0089e7; text-decoration: none"
-                    >
+                    <span v-b-modal.modal-1>
                       <center>
                         <img
                           src="../assets/Cara Berkomunikasi Efektif.png"
@@ -84,7 +82,7 @@
                         </h4>
                         <h6 class="m-t-0 m-b-0"><strong>EFEKTIF</strong></h6>
                       </center>
-                    </router-link>
+                    </span>
                   </div>
                 </b-col>
               </b-row>
@@ -93,6 +91,16 @@
         </b-row>
       </b-container>
     </section>
+    <b-modal id="modal-1" title="Cara Berkomunikasi Efektif" hide-footer>
+      <video width="100%" height="100%" controls>
+        <source
+          src="../assets/Cara Berkomunikasi Efektif dengan ODGJ.mp4"
+          type="video/mp4"
+        />
+        <source src="movie.ogg" type="video/ogg" />
+        Your browser does not support the video tag.
+      </video>
+    </b-modal>
   </div>
 </template>
 
