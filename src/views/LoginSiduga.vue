@@ -52,6 +52,7 @@
                     size="lg"
                     block
                     @click="login"
+                    :disabled="!password || !username"
                     >Login</b-button
                   >
 
