@@ -395,12 +395,11 @@
                     Skor Kuisioner Regulasi Emosi :
                     {{ nilaiPernyataan }}
                     <span v-if="nilaiPertanyaan < 40">Dukungan kurang</span>
-                    <span v-else-if="nilaiPertanyaan >= 40 || nilaiPernyataan <= 60"
+                    <span
+                      v-else-if="nilaiPertanyaan >= 40 || nilaiPernyataan <= 60"
                       >Dukungan cukup</span
                     >
-                    <span v-else-if="nilaiPertanyaan > 60"
-                      >Dukungan cukup</span
-                    >
+                    <span v-else-if="nilaiPertanyaan > 60">Dukungan cukup</span>
                   </h4>
                 </b-alert>
 
@@ -475,7 +474,6 @@ export default {
         }
       );
       vm.data = profil.data.respon[0];
-      console.log(vm.data);
 
       let fetch = await Axios.get(
         ip_server + "poolODGJ/listByPasienId/" + vm.$route.params.idPasien,

@@ -310,6 +310,8 @@ import moment from "moment";
 import axios from "axios";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import { ip_server } from "@/ip_server";
+
 export default {
   name: "Pernyataan",
   components: {
@@ -392,7 +394,7 @@ export default {
     // Set the initial number of items
 
     axios
-      .get("http://sideku.org:8801/pasien/all", {
+      .get(ip_server + "pasien/all", {
         headers: {
           accesstoken: localStorage.getItem("token"),
         },
@@ -406,10 +408,6 @@ export default {
   methods: {
     rubah(item, index, button) {
       this.infoModal.title = `Edit Data Pasien`;
-      // this.infoModal.content = item
-      // console.log(item)
-      // console.log( item.namaPenyakit)
-      //keluarkan model sesuai id
       this.idChoose = item.id;
       this.formm = item;
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
@@ -436,13 +434,12 @@ export default {
       let isiForm = vm.formm;
 
       axios
-        .post("http://sideku.org:8801/pasien/register", isiForm, {
+        .post(ip_server + "pasien/register", isiForm, {
           headers: {
             accesstoken: localStorage.getItem("token"),
           },
         })
         .then(function (response) {
-          console.log(response);
           alert("berhasil");
           vm.resetForm();
           vm.items.unshift(response.data);
@@ -457,23 +454,18 @@ export default {
       let vm = this;
       let dataForm = vm.formm;
       axios
-        .patch("http://sideku.org:8801/pasien/" + this.idChoose, dataForm, {
+        .patch(ip_server + "pasien/" + this.idChoose, dataForm, {
           headers: {
             accesstoken: localStorage.getItem("token"),
           },
         })
         .then(function (response) {
           console.log(response);
-          //  console.log(vm.items)
           alert("berhasil");
           let idx = vm.items.findIndex((o) => o.id === vm.idChoose);
-          // console.log(idx)
-          //item diganti form sekarang
           vm.items[idx] = vm.form;
           vm.resetForm();
-          // vm.$root.$emit('bv::hide::modal', 'modal-1')
           vm.$root.$emit("bv::hide::modal", vm.infoModal.id);
-          // vm.$refs['modal-1'].hide()
         })
         .catch(function (error) {
           console.log(error);
@@ -492,7 +484,6 @@ export default {
           alert("berhasil");
           let idx = vm.items.findIndex((o) => o.id === id);
           vm.items.splice(idx, 1);
-          // this.$root.$emit('bv::show::modal')
         })
         .catch(function (error) {
           console.log(error);
