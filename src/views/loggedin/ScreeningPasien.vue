@@ -588,7 +588,7 @@ export default {
       this.loading();
       formData.append("foto", this.file);
       axios
-        .post(ip_server + "proses_gambar", formData, {
+        .post("http://sideku.org:8841/proses_gambar", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

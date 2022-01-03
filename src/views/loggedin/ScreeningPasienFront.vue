@@ -552,7 +552,7 @@ export default {
       this.loading();
       formData.append("foto", this.file);
       axios
-        .post(ip_server + "proses_gambar", formData, {
+        .post("http://sideku.org:8841/proses_gambar", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -599,6 +599,8 @@ export default {
               "Terima Kasih sudah berpartisipasi, data anda akan kami simpan. silahkan tutup halaman ini",
               "success"
             );
+            localStorage.setItem("token", "");
+            vm.$router.push("/");
           })
           .catch(function (errr) {
             vm.$swal("Gagal", errr, "error");

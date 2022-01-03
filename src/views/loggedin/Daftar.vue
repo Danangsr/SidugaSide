@@ -37,6 +37,24 @@
                     ></b-form-input>
                   </b-form-group>
 
+                  <b-form-group label="Username">
+                    <b-form-input
+                      v-model="formm.username"
+                      required
+                      placeholder=""
+                      type="text"
+                    ></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Password">
+                    <b-form-input
+                      v-model="formm.password"
+                      required
+                      placeholder=""
+                      type="password"
+                    ></b-form-input>
+                  </b-form-group>
+
                   <b-form-group label="Tempat Lahir">
                     <b-form-input
                       v-model="formm.tempatLahir"
@@ -71,7 +89,12 @@
                     ></b-form-input>
                   </b-form-group>
 
-                  <b-button @click="tambah" variant="primary">Simpan</b-button>
+                  <b-button
+                    :disabled="!formm.username && !formm.password"
+                    @click="tambah"
+                    variant="primary"
+                    >Simpan</b-button
+                  >
                 </b-form>
               </b-col>
             </b-row>
@@ -97,11 +120,12 @@ export default {
     return {
       formm: {
         nama: "",
-
+        password: "",
         tempatLahir: "",
         tanggalLahir: "",
         alamat: "",
         pekerjaan: "",
+        username: "",
       },
     };
   },

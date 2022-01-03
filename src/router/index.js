@@ -10,6 +10,7 @@ import BiodataSiduga from "../views/BiodataSiduga.vue";
 import DukunganKelSiduga from "../views/DukunganKelSiduga.vue";
 import ScreeningSiduga from "../views/ScreeningSiduga.vue";
 import Login from "../views/Login.vue";
+import LoginUserPasien from '../views/loginPasienSideku.vue'
 import RiwayatPenyakit from "../views/loggedin/RiwayatPenyakit.vue";
 import GejalaFisik from "../views/loggedin/GejalaFisik.vue";
 import GejalaPsikis from "../views/loggedin/GejalaPsikis.vue";
@@ -21,6 +22,7 @@ import ScreeningPasienSiduga from "../views/loggedin/ScreeningPasienSiduga";
 import dashboard from "../views/loggedin/dashboard.vue";
 import Daftar from "../views/loggedin/Daftar.vue";
 import ScreeningPasienFront from "../views/loggedin/ScreeningPasienFront";
+import screeningUserPasien from '../views/loggedin/screeningUserPasien'
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,12 +43,14 @@ const routes = [
     }
   },
   {
-    path: "/login",
+    path: "/loginAdmin",
     name: "login",
     component: Login,
-    meta: {
-      guest: true
-    }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginUserPasien,
   },
   {
     path: "/daftar",
@@ -64,6 +68,14 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: dashboard,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/screeningUserPasien/:pasien',
+    name: 'screening user pasien',
+    component: screeningUserPasien,
     meta: {
       requiresAuth: true
     }

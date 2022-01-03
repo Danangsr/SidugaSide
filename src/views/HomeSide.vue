@@ -58,6 +58,14 @@
                       >Deteksi Emosi Anda Sekarang !</b-button
                     >
                   </router-link>
+
+                  <b-button
+                    @click="$router.push('/login')"
+                    size="lg"
+                    variant="primary"
+                    class="ml-5"
+                    >Login</b-button
+                  >
                 </center>
               </b-col>
             </b-row>
