@@ -25,9 +25,7 @@
               <h2 class="text-center">LOGIN SIDE</h2>
               <hr />
               <b-form>
-                <div v-if="pesan">
-                  <b-alert show variant="danger">{{ pesan }}</b-alert>
-                </div>
+                <b-alert :show="show" :variant="variant">{{ pesan }}</b-alert>
                 <b-form-group label="Username">
                   <b-form-input
                     v-model="email"
@@ -58,7 +56,7 @@
 
 <script>
 // @ is an alias to /src
-import { mapState, mapGetters, mapActions } from "vuex";
+// import { mapState, mapGetters, mapActions } from "vuex";
 import axios from "axios";
 import { ip_server } from "@/ip_server";
 
@@ -69,6 +67,10 @@ export default {
       isLogin: false,
       email: "",
       password: "",
+      show: false,
+      pesan: "",
+      variant: "",
+      proses: false,
     };
   },
 
@@ -102,15 +104,16 @@ export default {
   // },
 
   computed: {
-    ...mapState("Login", ["token", "pesan", "proses"]),
-    ...mapGetters("Login", ["cekLogin"]),
+    // ...mapState("Login", ["token", "pesan", "proses"]),
+    // ...mapGetters("Login", ["cekLogin"]),
   },
 
   methods: {
-    ...mapActions("Login", ["doLogin", "doLogout"]),
+    // ...mapActions("Login", ["doLogin", "doLogout"]),
     logindong: async function () {
       let vm = this;
       vm.show = true;
+      vm.proses = true;
 
       let send = await axios.post(ip_server + "pasien/login", {
         username: vm.email,
@@ -119,22 +122,24 @@ export default {
 
       if (send.data.token) {
         vm.show = false;
+        vm.proses = false;
         localStorage.setItem("idUser", send.data.id);
         localStorage.setItem("token", send.data.token);
         vm.$router.push(
           "/screeningUserPasien/" + localStorage.getItem("idUser")
         );
       } else if (send.data.message) {
-        vm.show = false;
+        vm.show = true;
+        vm.variant = "danger";
         vm.pesan = send.data.message;
+        console.log(vm.pesan);
         vm.alert = true;
+        vm.proses = false;
 
         setTimeout(() => {
-          vm.alert = false;
-        }, 3000);
+          vm.show = false;
+        }, 4000);
       }
-      //   this.doLogin({ email: this.email, password: this.password });
-      //didalam do login state token di isi
     },
     logoutdong: function () {
       this.doLogout();
