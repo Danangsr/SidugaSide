@@ -596,8 +596,9 @@ export default {
             vm.$swal.close();
             vm.$swal(
               "Berhasil",
-              "Terima Kasih sudah berpartisipasi, data anda akan kami simpan. silahkan tutup halaman ini",
-              "success"
+              "Terima Kasih sudah berpartisipasi, data anda akan kami simpan. silahkan tutup halaman ini atau akses halaman berikut ini <a href='http://hs.sideku.org/' target='_blank'><b-button variant='primary'>Happy Spiritual</b-button></a>",
+              "success",
+              "<a href=' //sweetalert2.github.io'>links</a>"
             );
             localStorage.setItem("token", "");
             vm.$router.push("/");

@@ -643,7 +643,12 @@ export default {
           .then(function (ress) {
             console.log(ress);
             vm.$swal.close();
-            vm.$swal("Berhasil", ":)", "success");
+            vm.$swal(
+              "Berhasil",
+              "<a href='http://hs.sideku.org/' target='_blank'><b-button variant='primary'>Happy Spiritual</b-button></a>",
+              "success",
+              ""
+            );
           })
           .catch(function (errr) {
             vm.$swal("Gagal", errr, "error");
